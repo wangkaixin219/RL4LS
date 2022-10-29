@@ -70,31 +70,6 @@ def train(args):
                 print('CurBest at Episode {}. Average reward = {:.3f}'.format(episode, cur_best))
                 torch.save(agent.policy_old.state_dict(), './output/PPOAgent_best_' + str(args.max_period) + '.pth')
 
-            # if not ibfa and running_reward < 1.44 * target and running_reward > 1.3 * target:
-            #     print("write ibfa")
-            #     while not ibfa:
-            #         ibfa = test('IBFA', 1.3*target, 1.44*target, args)
-
-            # if not ga and running_reward < 1.3 * target and running_reward > 1.25 * target:
-            #     print("write ga")
-            #     while not ga:
-            #        ga = test('GA', 1.25*target, 1.3*target, args)
-
-            # if not pg4ls and running_reward < 1.25 * target and running_reward > 1.15 * target:
-            #     print("write pg4ls")
-            #     while not pg4ls:
-            #         pg4ls = test('PG4LS', 1.15*target, 1.25*target, args)
-
-            # if not ql4ls and running_reward < 1.15 * target and running_reward > 1.1 * target:
-            #     print("write ql4ls")
-            #     while not ql4ls:
-            #         ql4ls = test('QL4LS', 1.1*target, 1.15*target, args)
-
-            # if not rl4ls and running_reward < target:
-            #     print("write rl4ls")
-            #     while not rl4ls:
-            #         rl4ls = test('CPPS WP2.2', 0, target, args)
-
             print('Episode {} \t Avg reward: {:.3f}\t H = {:.0f}\t D = {:.0f}\t O = {:.0f}\t T = {:.0f}\t S = {:.0f}'.format(episode, running_reward, H, D, O, T, S))
             running_reward = 0
             H = 0
@@ -104,9 +79,6 @@ def train(args):
             S = 0
 
 
-
-        if ibfa and ga and pg4ls and ql4ls and rl4ls:
-            break
 
     with open('result.json', 'w') as f:
         json.dump(result, f, indent=4)
