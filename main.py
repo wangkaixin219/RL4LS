@@ -197,7 +197,6 @@ def main():
 
     train(args)
     eval(args)
-    # test('CPPS', 0, 1, args)
 
 
 if __name__ == '__main__':
